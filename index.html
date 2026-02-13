@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Mrs Gupta 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffffff, #ffe6f2);
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* PASSWORD SCREEN */
+#passwordScreen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #ff99cc;
+    width: 200px;
+    text-align: center;
+    outline: none;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    background: #ff99cc;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff66b2;
+}
+
+.hidden {
+    display: none;
+}
+
+/* MAIN CONTENT */
+#mainContent {
+    padding: 30px 15px;
+}
+
+h1 {
+    color: #ff4da6;
+}
+
+/* LETTER CARDS */
+.letter {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(255,105,180,0.2);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 320px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.letter:hover {
+    transform: translateY(-5px);
+}
+
+.content {
+    display: none;
+    margin-top: 15px;
+    font-size: 14px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 12px;
+}
+
+/* SPARKLES */
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 14px;
+    color: #ff66b2;
+    animation: sparkleFade 1s linear forwards;
+}
+
+@keyframes sparkleFade {
+    to { opacity: 0; transform: translateY(-15px); }
+}
+
+/* FLOATING BACKGROUND HEARTS */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 14px;
+    color: #ffb6d9;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="passwordScreen">
+    <h2>🔐 Private Access</h2>
+    <p>What are you to me? ( 💍 )</p>
+    <input type="password" id="pass" placeholder="Enter password">
+    <button onclick="unlock()">Enter</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<div id="mainContent" class="hidden">
+    <h1>To My Slayy Queen 👑</h1>
+    <p>Mrs Gupta • Hima • Isha • Gappa</p>
+    <p>From Himanipaglu 💘</p>
+
+    <!-- LETTER 1 -->
+    <div class="letter" onclick="openLetter(1)">
+        💌 Our Beginning
+        <div class="content" id="content1">
+            <p>Finally we are together.</p>
+            <p>My 12/10 slayy queen 😘</p>
+            <img src="photo1.jpg">
+        </div>
+    </div>
+
+    <!-- LETTER 2 -->
+    <div class="letter hidden" id="letter2" onclick="openLetter(2)">
+        💍 Our Wedding
+        <div class="content" id="content2">
+            <p>One day you'll walk toward me in Indian wedding attire.</p>
+            <p>And I'll proudly call you Mrs Gupta.</p>
+            <img src="photo2.jpg">
+        </div>
+    </div>
+
+    <!-- LETTER 3 -->
+    <div class="letter hidden" id="letter3" onclick="openLetter(3)">
+        🗼 Our Travels
+        <div class="content" id="content3">
+            <p>Under the Eiffel Tower.</p>
+            <p>Exploring the world, hand in hand.</p>
+            <img src="photo3.jpg">
+        </div>
+    </div>
+
+    <!-- LETTER 4 -->
+    <div class="letter hidden" id="letter4" onclick="openLetter(4)">
+        🤍 Our Forever
+        <div class="content" id="content4">
+            <p>One day you're pregnant.</p>
+            <p>And I'm still holding your hand firmly.</p>
+            <p>Love. Support. Protection. Always.</p>
+            <img src="photo4.jpg">
+        </div>
+    </div>
+</div>
+
+<script>
+function unlock() {
+    const password = document.getElementById("pass").value;
+    if (password === "WIFE") {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainContent").classList.remove("hidden");
+        startHearts();
+    } else {
+        document.getElementById("error").innerText = "Wrong answer Mrs Gupta 😏";
+    }
+}
+
+function openLetter(num) {
+    document.getElementById("content"+num).style.display = "block";
+    if (num < 4) {
+        document.getElementById("letter"+(num+1)).classList.remove("hidden");
+    }
+}
+
+/* TOUCH SPARKLE */
+document.addEventListener("touchmove", createSparkle);
+document.addEventListener("mousemove", createSparkle);
+
+function createSparkle(e) {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.innerHTML = "✨";
+    sparkle.style.left = (e.touches ? e.touches[0].pageX : e.pageX) + "px";
+    sparkle.style.top = (e.touches ? e.touches[0].pageY : e.pageY) + "px";
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+}
+
+/* FLOATING HEARTS */
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.innerHTML = "💗";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
